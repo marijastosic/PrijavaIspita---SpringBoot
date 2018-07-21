@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Prijava Ispita</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  	<img th:src="@{/images/header.jpg}" class="img-responsive center-block" 
+			width="" height="" alt="Metropolitan" /> 
+</div>
+<div class="container">
+	<div class="col-md-10 col-md-offset-1" >
+		<h2>Prijavljeni ispiti</h2>
+		<table class="table table-striped">
+		    <tr>
+		        <th>Naziv ispita</th>
+		        <th>Predmetni nastavnik</th>
+		        <th>Termin</th>
+		        <th>Odjavi ispit</th>
+		    </tr>
+		    <tr th:each="ispit : ${ispiti}">
+		        <td th:utext="${ispit.naziv}">aa</td>
+		        <td th:utext="${ispit.nastavnik}">bb</td>
+		        <td th:utext="${ispit.termin}">11</td>
+		        <td>
+		        	<a class="btn btn-xs btn-danger btn-block" 
+                        th:href="${'/student/courses/' + ispit.id + '/update'+'/odjavi'}" th:value="${ispit.id}"><span class="glyphicon glyphicon-remove"></span> Odjavi ispit</a>
+		        </td>
+		    </tr>
+		</table>
+	</div>
+<div class="d-inline-block">
+		<div class="col-md-3 col-md-offset-3  btn-group" >
+			<form th:action="@{/logout}" method="get">
+				<button class="btn btn-md btn-danger btn-block" name="logout"
+					type="Submit">Odjavi se</button>
+			</form> 
+		</div>
+		<div class="col-md-3 btn-group" >
+			<form th:action="@{/student/home}" method="get">
+				<button class="btn btn-md btn-default btn-block" name="ispiti"
+					type="Submit">Prijavi ispit</button>
+			</form> 
+		</div>
+	</div>
+</div>
+ 
+</body>
+</html>
